@@ -266,6 +266,7 @@ code {
   justify-content: flex-end;
 }
 
+.language-switcher,
 .theme-switcher,
 .tab-list {
   display: flex;
@@ -276,6 +277,7 @@ code {
   background: var(--surface);
 }
 
+.language-switcher button,
 .theme-option,
 .tab-trigger {
   min-height: 2rem;
@@ -288,6 +290,7 @@ code {
   font-weight: 700;
 }
 
+.language-switcher button.active,
 .theme-option.active,
 .tab-trigger.active {
   background: var(--text);
@@ -853,12 +856,14 @@ a:focus-visible {
     grid-template-columns: 1fr;
   }
 
+  .language-switcher,
   .theme-switcher,
   .tab-list {
     width: 100%;
     overflow-x: auto;
   }
 
+  .language-switcher button,
   .theme-option,
   .tab-trigger {
     flex: 1 0 auto;
