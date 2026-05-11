@@ -30,6 +30,10 @@
             <span class="nav-icon" aria-hidden="true">+</span>
             Components
           </a>
+          <a href="#inspector" class="nav-link">
+            <span class="nav-icon" aria-hidden="true">⌁</span>
+            Inspector
+          </a>
           <a href="#states" class="nav-link">
             <span class="nav-icon" aria-hidden="true">*</span>
             States
@@ -262,10 +266,56 @@
           </div>
         </section>
 
+        <section class="section" id="inspector" aria-labelledby="inspector-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">03 / Inspector</p>
+              <h2 id="inspector-title">Token inspector</h2>
+            </div>
+            <span class="section-meta">Mock developer handoff with live CSS output</span>
+          </div>
+
+          <div class="inspector-grid">
+            <article class="component-demo">
+              <div class="demo-head">
+                <h3>Token details</h3>
+                <span>Select a semantic token to inspect usage guidance.</span>
+              </div>
+              <label class="field">
+                <span>Semantic token</span>
+                <select id="tokenSelect">
+                  <option value="accent">Accent</option>
+                  <option value="surface">Surface</option>
+                  <option value="danger">Danger</option>
+                  <option value="spacing">Spacing</option>
+                </select>
+              </label>
+              <div class="token-inspector" id="tokenInspector"></div>
+            </article>
+
+            <article class="component-demo">
+              <div class="demo-head">
+                <h3>Implementation snippet</h3>
+                <span>Generated from the selected token contract.</span>
+              </div>
+              <pre class="code-block"><code id="codeSnippet"></code></pre>
+              <button class="btn btn-secondary" type="button" id="copySnippet">Copy snippet</button>
+            </article>
+
+            <article class="component-demo">
+              <div class="demo-head">
+                <h3>Release checklist</h3>
+                <span>Mock readiness gates for component publishing.</span>
+              </div>
+              <div class="checklist" id="releaseChecklist"></div>
+            </article>
+          </div>
+        </section>
+
         <section class="section" id="states" aria-labelledby="states-title">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">03 / Behavior</p>
+              <p class="eyebrow">04 / Behavior</p>
               <h2 id="states-title">Component states</h2>
             </div>
             <span class="section-meta">Default, hover, focus, active, disabled, loading</span>
@@ -304,7 +354,7 @@
 
         <section class="section notes" id="guidelines" aria-labelledby="notes-title">
           <div>
-            <p class="eyebrow">04 / Architecture</p>
+            <p class="eyebrow">05 / Architecture</p>
             <h2 id="notes-title">Frontend structure</h2>
           </div>
           <div class="note-grid">

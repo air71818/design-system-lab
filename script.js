@@ -29,6 +29,7 @@ const translations = {
     "Primary": "主要導覽",
     "Tokens": "Tokens",
     "Components": "元件",
+    "Inspector": "檢查器",
     "States": "狀態",
     "Notes": "筆記",
     "Static frontend / GitHub Pages ready": "靜態前端 / GitHub Pages Ready",
@@ -111,6 +112,31 @@ const translations = {
     "5 variants": "5 種 variants",
     "4 variants": "4 種 variants",
     "Component states": "元件狀態",
+    "03 / Inspector": "03 / 檢查器",
+    "Token inspector": "Token 檢查器",
+    "Mock developer handoff with live CSS output": "含即時 CSS 輸出的 mock developer handoff",
+    "Token details": "Token 詳細資訊",
+    "Select a semantic token to inspect usage guidance.": "選取語意 token 以檢查使用建議。",
+    "Semantic token": "語意 token",
+    "Implementation snippet": "實作片段",
+    "Generated from the selected token contract.": "由選取的 token contract 產生。",
+    "Copy snippet": "複製片段",
+    "Release checklist": "發布檢查清單",
+    "Mock readiness gates for component publishing.": "元件發布用的 mock readiness gates。",
+    "Role": "角色",
+    "Usage": "使用方式",
+    "Primary interactive color": "主要互動色",
+    "Use for primary buttons, selected states, focus cues, and important product actions.": "用於主要按鈕、選取狀態、focus 提示與重要產品操作。",
+    "Default component canvas": "預設元件畫布",
+    "Default internal rhythm": "預設內部節奏",
+    "Keyboard states reviewed": "鍵盤狀態已審查",
+    "Contrast target passed": "對比目標已通過",
+    "Responsive layout checked": "響應式版面已檢查",
+    "Docs snippet generated": "文件片段已產生",
+    "Release notes drafted": "Release notes 已起草",
+    "Copied mock snippet": "已複製 mock 片段",
+    "04 / Behavior": "04 / 行為",
+    "05 / Architecture": "05 / 架構",
     "Semantic tokens power every component surface, so theme changes require variable overrides instead of component rewrites.": "語意化 tokens 驅動每個元件表面，因此主題變更只需要覆寫變數，不需要重寫元件。",
     "Close modal": "關閉 modal",
     "Cancel": "取消",
@@ -146,6 +172,7 @@ const translations = {
     "Primary": "メイン",
     "Tokens": "トークン",
     "Components": "コンポーネント",
+    "Inspector": "インスペクター",
     "States": "状態",
     "Notes": "ノート",
     "Static frontend / GitHub Pages ready": "静的フロントエンド / GitHub Pages 対応",
@@ -228,6 +255,31 @@ const translations = {
     "5 variants": "5 バリアント",
     "4 variants": "4 バリアント",
     "Component states": "コンポーネント状態",
+    "03 / Inspector": "03 / インスペクター",
+    "Token inspector": "トークンインスペクター",
+    "Mock developer handoff with live CSS output": "ライブ CSS 出力付きのモック開発者ハンドオフ",
+    "Token details": "トークン詳細",
+    "Select a semantic token to inspect usage guidance.": "セマンティックトークンを選んで使用ガイドを確認します。",
+    "Semantic token": "セマンティックトークン",
+    "Implementation snippet": "実装スニペット",
+    "Generated from the selected token contract.": "選択したトークン契約から生成されます。",
+    "Copy snippet": "スニペットをコピー",
+    "Release checklist": "リリースチェックリスト",
+    "Mock readiness gates for component publishing.": "コンポーネント公開向けのモック準備ゲート。",
+    "Role": "役割",
+    "Usage": "使い方",
+    "Primary interactive color": "主要インタラクション色",
+    "Use for primary buttons, selected states, focus cues, and important product actions.": "主要ボタン、選択状態、フォーカス表示、重要アクションに使用します。",
+    "Default component canvas": "標準コンポーネントキャンバス",
+    "Default internal rhythm": "標準の内部リズム",
+    "Keyboard states reviewed": "キーボード状態レビュー済み",
+    "Contrast target passed": "コントラスト目標クリア",
+    "Responsive layout checked": "レスポンシブレイアウト確認済み",
+    "Docs snippet generated": "ドキュメントスニペット生成済み",
+    "Release notes drafted": "リリースノート下書き済み",
+    "Copied mock snippet": "モックスニペットをコピーしました",
+    "04 / Behavior": "04 / 振る舞い",
+    "05 / Architecture": "05 / アーキテクチャ",
     "Semantic tokens power every component surface, so theme changes require variable overrides instead of component rewrites.": "セマンティックトークンが各コンポーネント表面を支えるため、テーマ変更は変数上書きだけで済みます。",
     "Close modal": "モーダルを閉じる",
     "Cancel": "キャンセル",
@@ -337,6 +389,41 @@ const spaceTokens = [
   ["--space-10", "40px"]
 ];
 
+const inspectorTokens = {
+  accent: {
+    token: "--accent",
+    role: "Primary interactive color",
+    usage: "Use for primary buttons, selected states, focus cues, and important product actions.",
+    snippet: `.button-primary {\n  background: var(--accent);\n  color: var(--surface);\n}\n\n.button-primary:focus-visible {\n  box-shadow: var(--shadow-focus);\n}`
+  },
+  surface: {
+    token: "--surface",
+    role: "Default component canvas",
+    usage: "Use for cards, popovers, input backgrounds, and neutral panels that sit above the app canvas.",
+    snippet: `.panel {\n  background: var(--surface);\n  border: 1px solid var(--border);\n  border-radius: var(--radius-lg);\n}`
+  },
+  danger: {
+    token: "--danger",
+    role: "Destructive and blocking state",
+    usage: "Use for deletion, invalid input, blocking alerts, and irreversible actions.",
+    snippet: `.alert-danger {\n  border-left-color: var(--danger);\n  background: var(--danger-soft);\n  color: var(--danger);\n}`
+  },
+  spacing: {
+    token: "--space-4",
+    role: "Default internal rhythm",
+    usage: "Use for control gaps, card padding, form rows, and compact responsive spacing.",
+    snippet: `.form-row {\n  display: grid;\n  gap: var(--space-4);\n  padding: var(--space-4);\n}`
+  }
+};
+
+const checklistItems = [
+  "Keyboard states reviewed",
+  "Contrast target passed",
+  "Responsive layout checked",
+  "Docs snippet generated",
+  "Release notes drafted"
+];
+
 function cssValue(token) {
   return getComputedStyle(root).getPropertyValue(token).trim();
 }
@@ -386,6 +473,31 @@ function renderSpaceTokens() {
     .join("");
 }
 
+function renderInspector() {
+  const select = document.querySelector("#tokenSelect");
+  const token = inspectorTokens[select.value];
+  const value = cssValue(token.token);
+  document.querySelector("#tokenInspector").innerHTML = `
+    <div class="inspector-preview" style="--inspector-color: ${value}" aria-hidden="true"></div>
+    <dl>
+      <dt>Token</dt><dd>${token.token}</dd>
+      <dt>Value</dt><dd>${value}</dd>
+      <dt>Role</dt><dd>${translateValue(token.role)}</dd>
+      <dt>Usage</dt><dd>${translateValue(token.usage)}</dd>
+    </dl>
+  `;
+  document.querySelector("#codeSnippet").textContent = token.snippet;
+}
+
+function renderChecklist() {
+  document.querySelector("#releaseChecklist").innerHTML = checklistItems.map((item, index) => `
+    <label>
+      <input type="checkbox" ${index < 3 ? "checked" : ""}>
+      <span>${translateValue(item)}</span>
+    </label>
+  `).join("");
+}
+
 function setTheme(theme) {
   root.dataset.theme = theme;
   storage.set("dsl-theme", theme);
@@ -397,6 +509,9 @@ function setTheme(theme) {
   });
 
   renderColorTokens();
+  if (document.querySelector("#tokenInspector")) {
+    renderInspector();
+  }
 }
 
 function setTab(tabName) {
@@ -478,7 +593,9 @@ function setupNavigationState() {
 function initialize() {
   renderTypeTokens();
   renderSpaceTokens();
+  renderChecklist();
   setTheme(storage.get("dsl-theme") || "light");
+  renderInspector();
   translatePage();
 
   document.querySelectorAll("[data-lang]").forEach((button) => {
@@ -487,8 +604,17 @@ function initialize() {
       renderTypeTokens();
       renderSpaceTokens();
       renderColorTokens();
+      renderInspector();
+      renderChecklist();
       translatePage(button.dataset.lang);
     });
+  });
+
+  document.querySelector("#tokenSelect").addEventListener("change", renderInspector);
+  document.querySelector("#copySnippet").addEventListener("click", (event) => {
+    navigator.clipboard?.writeText(document.querySelector("#codeSnippet").textContent);
+    event.currentTarget.insertAdjacentHTML("afterend", `<span class="copy-toast">Copied mock snippet</span>`);
+    window.setTimeout(() => document.querySelector(".copy-toast")?.remove(), 1300);
   });
 
   document.querySelectorAll("[data-theme-choice]").forEach((button) => {

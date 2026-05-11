@@ -319,6 +319,7 @@ code {
 }
 
 .summary-grid,
+.inspector-grid,
 .component-row,
 .state-matrix,
 .note-grid {
@@ -330,6 +331,7 @@ code {
 .summary-panel,
 .component-demo,
 .table-wrap,
+.token-inspector,
 .state-cell,
 .notes {
   border: 1px solid var(--border);
@@ -631,6 +633,84 @@ a:focus-visible {
   display: grid;
 }
 
+.inspector-grid {
+  grid-template-columns: 1fr 1.08fr 0.92fr;
+}
+
+.token-inspector {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--surface-raised);
+}
+
+.inspector-preview {
+  min-height: 5.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(135deg, var(--inspector-color), color-mix(in srgb, var(--inspector-color) 34%, var(--surface)));
+}
+
+.token-inspector dl {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.token-inspector dt {
+  color: var(--text-muted);
+  font-size: var(--font-12);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.token-inspector dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.code-block {
+  min-height: 12rem;
+  overflow: auto;
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-subtle);
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.checklist {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.checklist label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  font-weight: 700;
+}
+
+.checklist input {
+  width: 1.1rem;
+  min-height: 1.1rem;
+  accent-color: var(--accent);
+}
+
+.copy-toast {
+  color: var(--accent-strong);
+  font-size: var(--font-12);
+  font-weight: 800;
+}
+
 .alert {
   display: grid;
   gap: var(--space-1);
@@ -821,6 +901,7 @@ a:focus-visible {
   }
 
   .token-layout,
+  .inspector-grid,
   .component-row,
   .state-matrix,
   .note-grid {
@@ -849,6 +930,7 @@ a:focus-visible {
 
   .summary-grid,
   .token-layout,
+  .inspector-grid,
   .component-row,
   .form-grid,
   .state-matrix,
