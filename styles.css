@@ -637,6 +637,47 @@ a:focus-visible {
   grid-template-columns: 1fr 1.08fr 0.92fr;
 }
 
+.builder-grid {
+  display: grid;
+  grid-template-columns: 0.82fr 1fr 0.92fr;
+  gap: var(--space-4);
+}
+
+.builder-preview {
+  place-items: start;
+}
+
+.btn[data-size="sm"] {
+  min-height: 2.25rem;
+  min-width: 6rem;
+}
+
+.btn[data-size="lg"] {
+  min-height: 3.35rem;
+  min-width: 9rem;
+  font-size: var(--font-18);
+}
+
+.audit-list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.audit-item {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  font-weight: 700;
+}
+
+.audit-item strong {
+  color: var(--success);
+}
+
 .token-inspector {
   display: grid;
   gap: var(--space-3);
@@ -902,6 +943,7 @@ a:focus-visible {
 
   .token-layout,
   .inspector-grid,
+  .builder-grid,
   .component-row,
   .state-matrix,
   .note-grid {
@@ -931,6 +973,7 @@ a:focus-visible {
   .summary-grid,
   .token-layout,
   .inspector-grid,
+  .builder-grid,
   .component-row,
   .form-grid,
   .state-matrix,

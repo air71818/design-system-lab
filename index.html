@@ -34,6 +34,10 @@
             <span class="nav-icon" aria-hidden="true">⌁</span>
             Inspector
           </a>
+          <a href="#builder" class="nav-link">
+            <span class="nav-icon" aria-hidden="true">▣</span>
+            Builder
+          </a>
           <a href="#states" class="nav-link">
             <span class="nav-icon" aria-hidden="true">*</span>
             States
@@ -312,10 +316,63 @@
           </div>
         </section>
 
+        <section class="section" id="builder" aria-labelledby="builder-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">04 / Builder</p>
+              <h2 id="builder-title">Component builder</h2>
+            </div>
+            <span class="section-meta">Mock prop controls with generated preview state</span>
+          </div>
+          <div class="builder-grid">
+            <article class="component-demo">
+              <div class="demo-head">
+                <h3>Props</h3>
+                <span>Change controls to generate a component preview.</span>
+              </div>
+              <label class="field">
+                <span>Variant</span>
+                <select id="builderVariant">
+                  <option value="primary">Primary</option>
+                  <option value="secondary">Secondary</option>
+                  <option value="danger">Danger</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Size</span>
+                <select id="builderSize">
+                  <option value="sm">Small</option>
+                  <option value="md" selected>Medium</option>
+                  <option value="lg">Large</option>
+                </select>
+              </label>
+              <label class="check-row">
+                <input id="builderLoading" type="checkbox">
+                <span>Loading state</span>
+              </label>
+            </article>
+            <article class="component-demo builder-preview">
+              <div class="demo-head">
+                <h3>Live preview</h3>
+                <span>Generated with design-system classes.</span>
+              </div>
+              <button id="builderButton" class="btn btn-primary" type="button">Preview action</button>
+              <code id="builderOutput"></code>
+            </article>
+            <article class="component-demo">
+              <div class="demo-head">
+                <h3>Accessibility audit</h3>
+                <span>Mock checks for the generated configuration.</span>
+              </div>
+              <div class="audit-list" id="auditList"></div>
+            </article>
+          </div>
+        </section>
+
         <section class="section" id="states" aria-labelledby="states-title">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">04 / Behavior</p>
+              <p class="eyebrow">05 / Behavior</p>
               <h2 id="states-title">Component states</h2>
             </div>
             <span class="section-meta">Default, hover, focus, active, disabled, loading</span>
@@ -354,7 +411,7 @@
 
         <section class="section notes" id="guidelines" aria-labelledby="notes-title">
           <div>
-            <p class="eyebrow">05 / Architecture</p>
+            <p class="eyebrow">06 / Architecture</p>
             <h2 id="notes-title">Frontend structure</h2>
           </div>
           <div class="note-grid">

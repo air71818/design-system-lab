@@ -30,6 +30,7 @@ const translations = {
     "Tokens": "Tokens",
     "Components": "元件",
     "Inspector": "檢查器",
+    "Builder": "建構器",
     "States": "狀態",
     "Notes": "筆記",
     "Static frontend / GitHub Pages ready": "靜態前端 / GitHub Pages Ready",
@@ -135,8 +136,29 @@ const translations = {
     "Docs snippet generated": "文件片段已產生",
     "Release notes drafted": "Release notes 已起草",
     "Copied mock snippet": "已複製 mock 片段",
-    "04 / Behavior": "04 / 行為",
-    "05 / Architecture": "05 / 架構",
+    "04 / Builder": "04 / 建構器",
+    "Component builder": "元件建構器",
+    "Mock prop controls with generated preview state": "具備產生式預覽狀態的 mock props 控制",
+    "Props": "Props",
+    "Change controls to generate a component preview.": "調整控制項以產生元件預覽。",
+    "Variant": "Variant",
+    "Size": "尺寸",
+    "Small": "小",
+    "Medium": "中",
+    "Large": "大",
+    "Loading state": "載入狀態",
+    "Live preview": "即時預覽",
+    "Generated with design-system classes.": "由設計系統 classes 產生。",
+    "Preview action": "預覽操作",
+    "Accessibility audit": "無障礙稽核",
+    "Mock checks for the generated configuration.": "針對產生設定的 mock 檢查。",
+    "Keyboard reachable": "鍵盤可到達",
+    "Color contrast": "色彩對比",
+    "Accessible name": "無障礙名稱",
+    "Loading announcement": "載入公告",
+    "Pass": "通過",
+    "05 / Behavior": "05 / 行為",
+    "06 / Architecture": "06 / 架構",
     "Semantic tokens power every component surface, so theme changes require variable overrides instead of component rewrites.": "語意化 tokens 驅動每個元件表面，因此主題變更只需要覆寫變數，不需要重寫元件。",
     "Close modal": "關閉 modal",
     "Cancel": "取消",
@@ -173,6 +195,7 @@ const translations = {
     "Tokens": "トークン",
     "Components": "コンポーネント",
     "Inspector": "インスペクター",
+    "Builder": "ビルダー",
     "States": "状態",
     "Notes": "ノート",
     "Static frontend / GitHub Pages ready": "静的フロントエンド / GitHub Pages 対応",
@@ -278,8 +301,29 @@ const translations = {
     "Docs snippet generated": "ドキュメントスニペット生成済み",
     "Release notes drafted": "リリースノート下書き済み",
     "Copied mock snippet": "モックスニペットをコピーしました",
-    "04 / Behavior": "04 / 振る舞い",
-    "05 / Architecture": "05 / アーキテクチャ",
+    "04 / Builder": "04 / ビルダー",
+    "Component builder": "コンポーネントビルダー",
+    "Mock prop controls with generated preview state": "生成プレビュー状態付きのモック props コントロール",
+    "Props": "Props",
+    "Change controls to generate a component preview.": "コントロールを変更してプレビューを生成します。",
+    "Variant": "バリアント",
+    "Size": "サイズ",
+    "Small": "小",
+    "Medium": "中",
+    "Large": "大",
+    "Loading state": "読み込み状態",
+    "Live preview": "ライブプレビュー",
+    "Generated with design-system classes.": "デザインシステム class で生成。",
+    "Preview action": "プレビュー操作",
+    "Accessibility audit": "アクセシビリティ監査",
+    "Mock checks for the generated configuration.": "生成された設定向けのモックチェック。",
+    "Keyboard reachable": "キーボード到達可能",
+    "Color contrast": "色コントラスト",
+    "Accessible name": "アクセシブル名",
+    "Loading announcement": "読み込み通知",
+    "Pass": "合格",
+    "05 / Behavior": "05 / 振る舞い",
+    "06 / Architecture": "06 / アーキテクチャ",
     "Semantic tokens power every component surface, so theme changes require variable overrides instead of component rewrites.": "セマンティックトークンが各コンポーネント表面を支えるため、テーマ変更は変数上書きだけで済みます。",
     "Close modal": "モーダルを閉じる",
     "Cancel": "キャンセル",
@@ -424,6 +468,13 @@ const checklistItems = [
   "Release notes drafted"
 ];
 
+const auditItems = [
+  ["Keyboard reachable", "Pass"],
+  ["Color contrast", "Pass"],
+  ["Accessible name", "Pass"],
+  ["Loading announcement", "Pass"]
+];
+
 function cssValue(token) {
   return getComputedStyle(root).getPropertyValue(token).trim();
 }
@@ -495,6 +546,23 @@ function renderChecklist() {
       <input type="checkbox" ${index < 3 ? "checked" : ""}>
       <span>${translateValue(item)}</span>
     </label>
+  `).join("");
+}
+
+function renderBuilder() {
+  const variant = document.querySelector("#builderVariant").value;
+  const size = document.querySelector("#builderSize").value;
+  const loading = document.querySelector("#builderLoading").checked;
+  const button = document.querySelector("#builderButton");
+  button.className = `btn btn-${variant === "danger" ? "danger" : variant === "secondary" ? "secondary" : "primary"}`;
+  button.dataset.size = size;
+  button.innerHTML = loading ? `<span class="spinner" aria-hidden="true"></span>${translateValue("Syncing")}` : translateValue("Preview action");
+  document.querySelector("#builderOutput").textContent = `<Button variant="${variant}" size="${size}" loading={${loading}} />`;
+}
+
+function renderAudit() {
+  document.querySelector("#auditList").innerHTML = auditItems.map(([label, status]) => `
+    <div class="audit-item"><span>${translateValue(label)}</span><strong>${translateValue(status)}</strong></div>
   `).join("");
 }
 
@@ -594,8 +662,10 @@ function initialize() {
   renderTypeTokens();
   renderSpaceTokens();
   renderChecklist();
+  renderAudit();
   setTheme(storage.get("dsl-theme") || "light");
   renderInspector();
+  renderBuilder();
   translatePage();
 
   document.querySelectorAll("[data-lang]").forEach((button) => {
@@ -606,11 +676,16 @@ function initialize() {
       renderColorTokens();
       renderInspector();
       renderChecklist();
+      renderAudit();
+      renderBuilder();
       translatePage(button.dataset.lang);
     });
   });
 
   document.querySelector("#tokenSelect").addEventListener("change", renderInspector);
+  ["#builderVariant", "#builderSize", "#builderLoading"].forEach((selector) => {
+    document.querySelector(selector).addEventListener("change", renderBuilder);
+  });
   document.querySelector("#copySnippet").addEventListener("click", (event) => {
     navigator.clipboard?.writeText(document.querySelector("#codeSnippet").textContent);
     event.currentTarget.insertAdjacentHTML("afterend", `<span class="copy-toast">Copied mock snippet</span>`);
