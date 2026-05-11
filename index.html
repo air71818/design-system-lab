@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Design System Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="rail" aria-label="Design system sections">
+        <a class="brand" href="#overview" aria-label="Design System Lab home">
+          <span class="brand-mark">D</span>
+          <span class="brand-copy">
+            <strong>Design System Lab</strong>
+            <span>Portfolio playground</span>
+          </span>
+        </a>
+
+        <nav class="nav-list" aria-label="Primary">
+          <a href="#tokens" class="nav-link active">
+            <span class="nav-icon" aria-hidden="true">#</span>
+            Tokens
+          </a>
+          <a href="#components" class="nav-link">
+            <span class="nav-icon" aria-hidden="true">+</span>
+            Components
+          </a>
+          <a href="#states" class="nav-link">
+            <span class="nav-icon" aria-hidden="true">*</span>
+            States
+          </a>
+          <a href="#guidelines" class="nav-link">
+            <span class="nav-icon" aria-hidden="true">?</span>
+            Notes
+          </a>
+        </nav>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Static frontend / GitHub Pages ready</p>
+            <h1>Component playground and token reference</h1>
+          </div>
+          <div class="topbar-actions">
+            <div class="theme-switcher" role="group" aria-label="Theme">
+              <button class="theme-option active" type="button" data-theme-choice="light" aria-pressed="true">Light</button>
+              <button class="theme-option" type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+              <button class="theme-option" type="button" data-theme-choice="contrast" aria-pressed="false">Contrast</button>
+            </div>
+            <button class="icon-button" type="button" id="densityToggle" aria-pressed="false" aria-label="Toggle compact density" title="Toggle compact density">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16"></path>
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <section class="summary-grid" id="overview" aria-label="System overview">
+          <div class="summary-panel">
+            <span class="summary-label">Foundation</span>
+            <strong>27 tokens</strong>
+            <p>Color, type, radius, shadow, and spacing values exposed as CSS custom properties.</p>
+          </div>
+          <div class="summary-panel">
+            <span class="summary-label">Controls</span>
+            <strong>8 patterns</strong>
+            <p>Buttons, fields, select menus, switches, tabs, modal, alerts, and state previews.</p>
+          </div>
+          <div class="summary-panel">
+            <span class="summary-label">Themes</span>
+            <strong>3 modes</strong>
+            <p>Light, dark, and high-contrast palettes share the same semantic component API.</p>
+          </div>
+        </section>
+
+        <section class="section" id="tokens" aria-labelledby="tokens-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">01 / Foundations</p>
+              <h2 id="tokens-title">Tokens</h2>
+            </div>
+            <span class="section-meta">CSS variables rendered from JS data</span>
+          </div>
+
+          <div class="token-layout">
+            <div class="swatch-board" id="colorTokens" aria-label="Color token swatches"></div>
+            <div class="token-tables">
+              <div class="table-wrap">
+                <div class="table-title">Typography</div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Value</th>
+                      <th>Preview</th>
+                    </tr>
+                  </thead>
+                  <tbody id="typeTokens"></tbody>
+                </table>
+              </div>
+              <div class="table-wrap">
+                <div class="table-title">Spacing</div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Value</th>
+                      <th>Preview</th>
+                    </tr>
+                  </thead>
+                  <tbody id="spaceTokens"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="components" aria-labelledby="components-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">02 / Playground</p>
+              <h2 id="components-title">Components</h2>
+            </div>
+            <div class="tab-list" role="tablist" aria-label="Component groups">
+              <button class="tab-trigger active" id="tab-controls" type="button" role="tab" aria-selected="true" aria-controls="panel-controls" data-tab="controls">Controls</button>
+              <button class="tab-trigger" id="tab-feedback" type="button" role="tab" aria-selected="false" aria-controls="panel-feedback" data-tab="feedback">Feedback</button>
+              <button class="tab-trigger" id="tab-composition" type="button" role="tab" aria-selected="false" aria-controls="panel-composition" data-tab="composition">Composition</button>
+            </div>
+          </div>
+
+          <div class="playground">
+            <section class="component-pane active" id="panel-controls" role="tabpanel" aria-labelledby="tab-controls" data-panel="controls">
+              <div class="component-row">
+                <div class="component-demo">
+                  <div class="demo-head">
+                    <h3>Buttons</h3>
+                    <span>Intent, hierarchy, disabled</span>
+                  </div>
+                  <div class="button-rack">
+                    <button class="btn btn-primary" type="button">Create token</button>
+                    <button class="btn btn-secondary" type="button">Export JSON</button>
+                    <button class="btn btn-quiet" type="button">Preview</button>
+                    <button class="btn btn-danger" type="button">Remove</button>
+                    <button class="btn btn-primary" type="button" disabled>Saving</button>
+                  </div>
+                </div>
+
+                <div class="component-demo">
+                  <div class="demo-head">
+                    <h3>Form controls</h3>
+                    <span>Focus, help, validation</span>
+                  </div>
+                  <form class="form-grid" id="sampleForm" novalidate>
+                    <label class="field">
+                      <span>Component name</span>
+                      <input type="text" value="Primary button" aria-describedby="nameHelp">
+                      <small id="nameHelp">Used in documentation headings.</small>
+                    </label>
+                    <label class="field">
+                      <span>Status</span>
+                      <select>
+                        <option>Ready for review</option>
+                        <option>Draft</option>
+                        <option>Deprecated</option>
+                      </select>
+                    </label>
+                    <label class="field field-error">
+                      <span>Token alias</span>
+                      <input type="text" value="color.action.primary" aria-invalid="true" aria-describedby="aliasError">
+                      <small id="aliasError">Alias already exists in this theme.</small>
+                    </label>
+                    <label class="check-row">
+                      <input type="checkbox" checked>
+                      <span>Show deprecated variants</span>
+                    </label>
+                  </form>
+                </div>
+              </div>
+            </section>
+
+            <section class="component-pane" id="panel-feedback" role="tabpanel" aria-labelledby="tab-feedback" data-panel="feedback" hidden>
+              <div class="component-row">
+                <div class="component-demo">
+                  <div class="demo-head">
+                    <h3>Alerts</h3>
+                    <span>Semantic surface treatments</span>
+                  </div>
+                  <div class="alert-stack">
+                    <div class="alert alert-success"><strong>Published</strong><span>Theme tokens are synced across all previews.</span></div>
+                    <div class="alert alert-warning"><strong>Needs review</strong><span>One color pair is below the contrast target.</span></div>
+                    <div class="alert alert-danger"><strong>Blocked</strong><span>Modal copy is missing an accessible label.</span></div>
+                  </div>
+                </div>
+                <div class="component-demo">
+                  <div class="demo-head">
+                    <h3>Modal</h3>
+                    <span>Accessible dialog shell</span>
+                  </div>
+                  <p class="demo-copy">Open the dialog to inspect overlay, focus return, escape handling, and action hierarchy.</p>
+                  <button class="btn btn-primary" type="button" id="openModal">Open modal</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="component-pane" id="panel-composition" role="tabpanel" aria-labelledby="tab-composition" data-panel="composition" hidden>
+              <div class="component-row">
+                <div class="component-demo wide">
+                  <div class="demo-head">
+                    <h3>Toolbar composition</h3>
+                    <span>Search, filters, actions</span>
+                  </div>
+                  <div class="toolbar-demo">
+                    <label class="search-field">
+                      <span class="sr-only">Search components</span>
+                      <input type="search" placeholder="Search components">
+                    </label>
+                    <select aria-label="Component category">
+                      <option>All categories</option>
+                      <option>Inputs</option>
+                      <option>Feedback</option>
+                      <option>Navigation</option>
+                    </select>
+                    <button class="btn btn-secondary" type="button">Filter</button>
+                    <button class="btn btn-primary" type="button">New component</button>
+                  </div>
+                  <div class="mini-table" role="table" aria-label="Component inventory">
+                    <div role="row" class="mini-row mini-head">
+                      <span role="columnheader">Name</span>
+                      <span role="columnheader">Status</span>
+                      <span role="columnheader">Coverage</span>
+                    </div>
+                    <div role="row" class="mini-row">
+                      <span role="cell">Button</span>
+                      <span role="cell"><mark class="pill success">Stable</mark></span>
+                      <span role="cell">12 variants</span>
+                    </div>
+                    <div role="row" class="mini-row">
+                      <span role="cell">Select</span>
+                      <span role="cell"><mark class="pill warning">Review</mark></span>
+                      <span role="cell">5 variants</span>
+                    </div>
+                    <div role="row" class="mini-row">
+                      <span role="cell">Modal</span>
+                      <span role="cell"><mark class="pill success">Stable</mark></span>
+                      <span role="cell">4 variants</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="section" id="states" aria-labelledby="states-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">03 / Behavior</p>
+              <h2 id="states-title">Component states</h2>
+            </div>
+            <span class="section-meta">Default, hover, focus, active, disabled, loading</span>
+          </div>
+
+          <div class="state-matrix">
+            <div class="state-cell">
+              <span>Default</span>
+              <button class="btn btn-primary" type="button">Button</button>
+            </div>
+            <div class="state-cell force-hover">
+              <span>Hover</span>
+              <button class="btn btn-primary" type="button">Button</button>
+            </div>
+            <div class="state-cell force-focus">
+              <span>Focus</span>
+              <button class="btn btn-primary" type="button">Button</button>
+            </div>
+            <div class="state-cell force-active">
+              <span>Active</span>
+              <button class="btn btn-primary" type="button">Button</button>
+            </div>
+            <div class="state-cell">
+              <span>Disabled</span>
+              <button class="btn btn-primary" type="button" disabled>Button</button>
+            </div>
+            <div class="state-cell">
+              <span>Loading</span>
+              <button class="btn btn-primary is-loading" type="button">
+                <span class="spinner" aria-hidden="true"></span>
+                Syncing
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section notes" id="guidelines" aria-labelledby="notes-title">
+          <div>
+            <p class="eyebrow">04 / Architecture</p>
+            <h2 id="notes-title">Frontend structure</h2>
+          </div>
+          <div class="note-grid">
+            <p>Semantic tokens power every component surface, so theme changes require variable overrides instead of component rewrites.</p>
+            <p>Playground data lives in <code>script.js</code>, while component contracts live in reusable classes inside <code>styles.css</code>.</p>
+            <p>The page is static, deployable from GitHub Pages, and has no runtime dependency beyond the browser.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modalBackdrop" hidden>
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Review change</p>
+            <h2 id="modalTitle">Publish theme update</h2>
+          </div>
+          <button class="icon-button" type="button" id="closeModal" aria-label="Close modal" title="Close modal">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18"></path>
+            </svg>
+          </button>
+        </div>
+        <p id="modalDesc">This preview shows how a design-system action can be confirmed without leaving the component playground.</p>
+        <div class="modal-actions">
+          <button class="btn btn-quiet" type="button" data-modal-cancel>Cancel</button>
+          <button class="btn btn-primary" type="button" data-modal-confirm>Publish update</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
